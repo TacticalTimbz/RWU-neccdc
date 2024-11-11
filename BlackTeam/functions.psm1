@@ -20,7 +20,7 @@ function New-ADUsers {
     $ou = "OU=Users,$((Get-ADDomain).DistinguishedName)"
     $defaultPassword = "P@ssw0rd!"
     for ($i = 1; $i -le 250; $i++) {
-        $userInfo = Generate-RandomUser
+        $userInfo = New-RandomUser
         New-ADUser -SamAccountName $userInfo.UserName `
                 -UserPrincipalName "$($userInfo.UserName)@domain.com" `
                 -GivenName $userInfo.FirstName `
