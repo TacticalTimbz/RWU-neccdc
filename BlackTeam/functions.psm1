@@ -17,22 +17,23 @@ function New-RandomUser {
 
 function New-ADUsers {
     Import-Module ActiveDirectory
-    $ou = "OU=Users,$((Get-ADDomain).DistinguishedName)"
+    $ou = "CN=Users,$((Get-ADDomain).DistinguishedName)"
     $defaultPassword = "P@ssw0rd!"
     for ($i = 1; $i -le 250; $i++) {
         $userInfo = New-RandomUser
-        New-ADUser -SamAccountName $userInfo.UserName `
-                -UserPrincipalName "$($userInfo.UserName)@domain.com" `
-                -GivenName $userInfo.FirstName `
-                -Surname $userInfo.LastName `
-                -Name $userInfo.DisplayName `
-                -DisplayName $userInfo.DisplayName `
-                -Path $ou `
-                -AccountPassword (ConvertTo-SecureString -AsPlainText $defaultPassword -Force) `
-                -Enabled $true `
-                -PassThru
-
-        Write-Host "Created user: $($userInfo.UserName)"
+        Try{
+            New-ADUser -SamAccountName $userInfo.UserName `
+                    -UserPrincipalName "$($userInfo.UserName)@domain.com" `
+                    -GivenName $userInfo.FirstName `
+                    -Surname $userInfo.LastName `
+                    -Name $userInfo.DisplayName `
+                    -DisplayName $userInfo.DisplayName `
+                    -Path $ou `
+                    -AccountPassword (ConvertTo-SecureString -AsPlainText $defaultPassword -Force) `
+                    -Enabled $true `
+                    -PassThru `
+                    -ErrorAction Stop
+                    } Catch { $_ }
     }
     Write-Host "250 user accounts created successfully!"
 }
