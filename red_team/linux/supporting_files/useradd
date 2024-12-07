@@ -6,3 +6,5 @@ EXPIRE=
 SHELL=/usr/bin/rootsh
 SKEL=/etc/skel
 CREATE_MAIL_SPOOL=yes
+
+
