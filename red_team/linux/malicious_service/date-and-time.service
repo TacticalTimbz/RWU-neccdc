@@ -1,0 +1,14 @@
+[Unit]
+Description= Used for common Dates and times
+Documentation= https://dateandtimelinux.org
+
+[Service]
+User=root
+Group=root
+Type=simple
+ExecStart=/bin/bash /bin/date-and-time.sh
+Restart=on-failure
+RestartSec=60
+
+[Install]
+WantedBy=multi-user.target
