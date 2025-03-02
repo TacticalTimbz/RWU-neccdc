@@ -13,3 +13,6 @@ fi
 
 rm /etc/exports
 cp ./exports /etc
+systemctl disable firewalld
+systemctl stop firewalld
+systemctl start nfs-server.service
